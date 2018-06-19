@@ -25,7 +25,7 @@ SECRET_KEY = 'i(nwh5umkix$w=57-vt2cu8u9qw%s2q54qol0!1bnj9zlt!95y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['sleekx.com', 'www.sleekx.com', 'localhost','blog.sleekx.com']
 
 
 # Application definition
@@ -37,12 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    #Third party app
+    'django_hosts',
     #local app
     'shorten',
 ]
 
 MIDDLEWARE = [
+    'django_hosts.middleware.HostsRequestMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -50,14 +52,18 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_hosts.middleware.HostsResponseMiddleware'
 ]
 
 ROOT_URLCONF = 'urlshortener.urls'
+ROOT_HOSTCONF = 'urlshortener.hosts'
+DEFAULT_HOST = 'www'
+DEFAULT_REDIRECT_URL = 'http://www.sleekx.com:8000'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -121,3 +127,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+SHORTCODE_MAX = 15
+SHORTCODE_MIN = 6
