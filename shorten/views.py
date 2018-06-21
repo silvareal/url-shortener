@@ -1,8 +1,9 @@
-from django.shortcuts import render, get_object_or_404,HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404, HttpResponseRedirect, Http404
 from .models import KirrURL
 from django.views import View
 
 from .forms import SubmitURLForm
+from analytics.models import ClickEvent
 # Create your views here.
 
 
@@ -41,5 +42,11 @@ class ShortenCBV(View):
 
 class KirrRedirectView(View):
     def get(self, request, shortcode=None, *args, **kwargs):
-        obj = get_object_or_404(KirrURL, shortcode=shortcode)
+        #obj = get_object_or_404(KirrURL, shortcode=shortcode)
+        qs = KirrURL.objects.filter(shortcode__iexact=shortcode)
+        if qs.count() !=1 or not qs.exists():
+            raise Http404
+        print(qs)
+        obj = qs.first()
+        print(ClickEvent.objects.createcount(obj))
         return HttpResponseRedirect(obj.url)
