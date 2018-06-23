@@ -46,7 +46,6 @@ class KirrRedirectView(View):
         qs = KirrURL.objects.filter(shortcode__iexact=shortcode)
         if qs.count() !=1 or not qs.exists():
             raise Http404
-        print(qs)
         obj = qs.first()
         print(ClickEvent.objects.createcount(obj))
         return HttpResponseRedirect(obj.url)

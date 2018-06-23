@@ -14,7 +14,7 @@ class ClickEventManager(models.Manager):
 
 
 class ClickEvent(models.Model):
-    kirr_url = models.ForeignKey(KirrURL, on_delete=models.CASCADE, related_name='click')
+    kirr_url = models.ForeignKey(KirrURL, on_delete=models.CASCADE)
     count = models.IntegerField(default=0)
     update = models.DateTimeField(auto_now=True)
     timestamp = models.DateTimeField(auto_now_add=True)

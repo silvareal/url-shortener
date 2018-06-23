@@ -1,3 +1,12 @@
+{% extends "shorten/base.html" %}
+
+
+{% block title %}
+    {{ block.super }} shortcode created
+{% endblock title %}
+
+
+{% block content %}
 <div style="margin: 0 auto; width: 50%">
     <p>create</p>
     <p>{{ obj.url }}</p>
@@ -7,3 +16,4 @@
     <p> <b><a href="{{ obj.get_short_url }}">{{ obj.get_short_url }}</a></b> </p>
     <p><a href="/">+ home</a></p>
 </div>
+{% endblock %}

@@ -3,7 +3,7 @@ from .utils import code_generator, create_shorcode
 from django.conf import settings
 from django_hosts.resolvers import reverse
 
-from .validation import validate_url
+from shorten.validation import validate_url
 
 
 SHORTCODE_MAX = getattr(settings, 'SHORTCODE_MAX', 15)

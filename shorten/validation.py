@@ -3,6 +3,7 @@ from django.core.validators import URLValidator
 
 def validate_url(value):
     try:
+        '''
         if 'http' in value:
             new_value = value
             URLValidator(new_value)
@@ -11,6 +12,8 @@ def validate_url(value):
             new_value = f'http://{value}'
             print(new_value)
             URLValidator(new_value)
+        '''
+        URLValidator(value)
     except:
         raise ValidationError("input a valid URL")
-    return new_value
+    return value
