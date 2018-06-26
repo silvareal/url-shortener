@@ -48,5 +48,5 @@ class KirrURL(models.Model):
         super(KirrURL, self).save(*args, **kwargs)
 
     def get_short_url(self):
-        url_path = reverse('shortcode', kwargs={'shortcode': self.shortcode}, host='www', scheme='http', port='8000')
+        url_path = reverse('shortcode', kwargs={'shortcode': self.shortcode}, host='www', scheme='http')
         return url_path

@@ -8,6 +8,3 @@ function copyURL() {
     document.execCommand("copy");
 }
 
-$(document).ready(function(){
-    $("#load").html("demo_ajax_load.asp");
-};
