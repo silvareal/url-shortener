@@ -22,12 +22,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'i(nwh5umkix$w=57-vt2cu8u9qw%s2q54qol0!1bnj9zlt!95y'
+SECRET_KEY = config('SECRET_KEY', default='')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', cast=bool)
 
-ALLOWED_HOSTS = ['sleekx.com', 'www.sleekx.com', 'localhost','blog.sleekx.com']
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='', cast=Csv())
 
 
 # Application definition
@@ -61,8 +61,8 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'urlshortener.urls'
 ROOT_HOSTCONF = 'urlshortener.hosts'
 DEFAULT_HOST = 'www'
-DEFAULT_REDIRECT_URL = 'www.sleekx.com:8000'
-PARENT_HOST = 'sleekx.com'
+DEFAULT_REDIRECT_URL = config('DEFAULT_REDIRECT_URL', default='')
+PARENT_HOST = config('PARENT_HOST', default='')
 
 TEMPLATES = [
     {
