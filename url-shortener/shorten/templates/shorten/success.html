@@ -1,0 +1,31 @@
+{% extends "shorten/base.html" %}
+
+
+{% block title %}
+    {{ block.super }} shortcode created
+{% endblock title %}
+
+
+{% block content %}
+<div class="container-pod" >
+    <div class="success-flex">
+        <h3 style="color:rgba(0, 0, 0, 0.712);">shortcode created!</h3>
+        <p>{{ obj.url }}</p>
+        {% if object.ClickEvent %}
+            <p>count: {{ object.ClickEvent.count }}</p>
+        {% endif %}
+        <p style="line-height: 2rem ;background: #6969d41a;padding: 20px;">
+            <b>
+                <a id="urlcopied" href="{{ obj.get_short_url }}">{{ obj.get_short_url }}</a>
+            </b>
+            <input style="z-index: -1; position: relative; width:10px" type="text" value="" id="inputUrl">
+            <button class="btn btn-outline-warning" onclick="copyURL()">copy</button>
+
+        </p>
+        <p><a href="/">&laquo; home</a></p>
+    </div>
+
+</div>
+
+
+{% endblock %}

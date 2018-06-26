@@ -1,0 +1,2 @@
+django==1.10
+django-hosts==3.0
