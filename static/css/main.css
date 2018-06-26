@@ -3,6 +3,8 @@ body {
     font-family: brandon-grotesque,"Helvetica Neue",Helvetica,Arial,sans-serif;
     margin: 0;
     padding: 0;
+    position: relative;
+    scroll-behavior: smooth !important;
 }
 
 ::-moz-selection {
@@ -28,7 +30,7 @@ header {
 }
 
 header nav {
-    background: #01579B;
+    background: linear-gradient(90deg,#01579B, #1b2130);
     box-shadow: 0px 0px 9px 2px black;
 
 }
@@ -37,7 +39,6 @@ nav img {
     top: 50%;
     bottom: 10%;
     box-shadow: 3px 3px 5px 1px black;
-
 }
 
 @media only screen and (max-width: 992px) {
@@ -120,28 +121,31 @@ fieldset {
     line-height: 3rem;
     font-size: 20px;
     border: 0;
-    box-shadow: #039BE5;
 }
 
 .form input[type="text"] {
     color: #333;
+    box-shadow: inset 0 0 7px rgba(17, 16, 17, 0.671);
 }
 
 .form input[type='submit'] {
     background: #039BE5;
     color: white;
     border: 0;
-    border-top-right-radius: 10% !important;
-    border-bottom-right-radius: 10% !important;
+    border-top-right-radius: 5% !important;
+    border-bottom-right-radius: 5% !important;
     transition: all 0.5s;
     padding: 10px 50px;
-    box-shadow: 0 0 0 4px blue;
 }
 
 .form input[type='submit']:hover {
-    background: rgb(17, 170, 246);
+    background: #039BE5;;
     color: white;
     cursor: pointer;
+}
+
+.form-control:focus {
+    border: 1px solid rgb(3, 155, 229) !important;
 }
 
 @media only screen and (max-width: 992px ) {
@@ -162,7 +166,6 @@ fieldset {
 
     .form input[type='submit'] {
         padding: 4px 8px;
-        box-shadow: #039BE5;
         font-size: 15px;
 
     }
@@ -201,10 +204,9 @@ fieldset {
 
 .content1 p{
     padding-top:0.2rem;
-    color: rgba(165, 160, 160, 0.746);
+    color: rgba(165, 160, 160, 0.808);
     font-family: brandon-grotesque,"Helvetica Neue",Helvetica,Arial,sans-serif;;
-    font-weight: 300;
-    font-size: 13px;
+    font-size: 15px;
     width: 90%;
     margin-right: auto;
     margin-left: auto;
@@ -245,4 +247,42 @@ footer div {
     color: rgb(26, 20, 20);
     font-size: 30px !important;
     font-stretch: 30px;
+}
+
+.form-error {
+    transition: all 0.5s;
+    z-index: 10005;
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    background: rgba(250, 19, 105, 0.89);
+    margin-top: 10px;
+    margin-left: 5%;
+    color: #f7f5f4;
+    font-family: sans-serif;
+    box-shadow: -3px 4px 10px #00000080;
+    border-radius: 3px;
+}
+
+.success-flex {
+    background: white;
+    min-height: 300px;
+    box-shadow: inset 0 0 7px rgba(17, 16, 17, 0.671);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    color: grey;
+}
+
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.5s;
 }

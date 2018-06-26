@@ -60,7 +60,7 @@ ROOT_URLCONF = 'urlshortener.urls'
 ROOT_HOSTCONF = 'urlshortener.hosts'
 DEFAULT_HOST = 'www'
 DEFAULT_REDIRECT_URL = 'www.sleekx.com:8000'
-PARENT_HOST = 'sleekx.com:8000'
+PARENT_HOST = 'sleekx.com'
 
 TEMPLATES = [
     {

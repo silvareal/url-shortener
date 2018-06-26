@@ -1,3 +1,4 @@
+
 from django.db import models
 from .utils import code_generator, create_shorcode
 from django.conf import settings
@@ -42,8 +43,10 @@ class KirrURL(models.Model):
     def save(self, *args, **kwargs):
         if self.shortcode is None or self.shortcode == '':
             self.shortcode = create_shorcode(self)
+        if 'http' not in self.url:
+            self.url = f'http://{self.url}'
         super(KirrURL, self).save(*args, **kwargs)
 
     def get_short_url(self):
-        url_path = reverse('shortcode', kwargs={'shortcode': self.shortcode}, host='www', scheme='http')
+        url_path = reverse('shortcode', kwargs={'shortcode': self.shortcode}, host='www', scheme='http', port='8000')
         return url_path

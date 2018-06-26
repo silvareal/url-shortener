@@ -4,11 +4,11 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html class="no-js"> <!--<![endif]-->
+<html class="no-js" id="load"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>slash.com || {% block title %}{% endblock title %} </title>
+    <title>Slash.com || {% block title %}{% endblock title %} </title>
     <meta name="description" content="shorten your url">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">    <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,13 +27,36 @@
             <div class="container">
                 <a class="navbar-brand" href="/"><img  width="60" height="50" class="img-thumbnail" src="{% static 'image/logo1.png' %}" alt="logo"></a>
 
-                <div style="float: right">
-                    <button type="button" class="btn btn-outline-warning">login or signup to manage URL</button>
+                <div style="float: right" style="scroll-behavior: smooth;">
+                        <a href="#learn-more">
+                            <button type="button" class="btn btn-outline-warning">Learn more</button>
+                        </a>
                 </div>
             </div>
 
           </nav>
+          {% csrf_token %}
+
     </header>
+
+    <!-- form validation error -->
+    <div class="form-error">
+            {% if form.errors %}
+            <div style="padding: 5px;">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                <div style="padding: 5px">
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
+
+
+            {% endif %}
+    </div>
+    <!--for validatiion error stops-->
 
     <div class=" container">
         <div class="main-form">
@@ -43,11 +66,11 @@
     </div>
 
     <div class="container content1">
-        <div class="row">
+        <div class="row" id="learn-more">
             <div class="col-sm-4" style="margin-top: 1rem">
                 <i class="material-icon fa fa-wrench"></i>
                 <h3 class="type-brand">SHORTEN</h3>
-                <p>Keep it simple! harness the power of <b>Slash</b> and make your url look good by shortning it
+                <p>Keep it simple! harness the power of <strong>Slash</strong> and make your url look good by shortening it
 
                 </p>
             </div>
@@ -59,7 +82,7 @@
             <div class="col-sm-4" style="margin-top: 1.2rem">
                 <i class="material-icon fa fa-line-chart "></i>
                 <h3 class="type-brand">TRACK</h3>
-                <p>Analytics helps you in keeping track of your url click, updateand potential users </p>
+                <p>Analytics helps you in keeping track of your url click, update and potential users </p>
             </div>
         </div>
     </div>
@@ -74,4 +97,8 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script></body>
+
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script src="{% static 'js/app.js' %}"></script>
+    {% block javascript %}{% endblock %}
 </html>
