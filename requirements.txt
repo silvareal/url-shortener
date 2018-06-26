@@ -1,7 +1,7 @@
 django==1.10
 django-hosts==3.0
 dj-database-url==0.5.0
-dj-static==0.7.0
+dj-static==0.0.6
 gunicorn==19.7.1
 Unipath==1.1
 python-decouple==3.1
