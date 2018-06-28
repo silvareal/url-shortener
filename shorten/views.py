@@ -29,16 +29,29 @@ class ShortenCBV(View):
         template = 'shorten/home.html'
         if form.is_valid():
             new_url = form.cleaned_data.get('url')
-            obj, created = KirrURL.objects.get_or_create(url=new_url)
+            obj = KirrURL.objects.create(url=new_url)
             context = {
                 'obj': obj,
-                'created': created
             }
-            if created:
+            if obj:
                 template = 'shorten/success.html'
             else:
                 template = 'shorten/already-exists.html'
         return render(request, template, context)
+
+
+'''
+def url_edit(request, shortcode=None):
+    solution = get_object_or_404(Solution, shortcode=shortcode)
+    form = SubmitURLForm(request.POST)
+    if form.is_valid():
+        solution = form.save(commit=False)
+        solution.save()
+        return solution
+    context = {
+        'form': form
+    }
+    return render(request, 'shorten/edit.html', context) '''
 
 class KirrRedirectView(View):
     def get(self, request, shortcode=None, *args, **kwargs):
